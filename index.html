@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Genius</title>
+    <!-- tailwind css and daisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="px-24 py-8">
+            <div class="navbar bg-primary text-primary-content rounded-xl">
+                <a class="navbar-start btn btn-ghost normal-case text-xl">Interactive <span
+                        class="text-base-200">(Geometry Genius)</span></a>
+                <div class="navbar-end">
+                    <a id="blogs-button" class="btn btn-active btn-secondary">Blogs</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="mt-10">
+        <div class="grid grid-cols-4 place-items-center gap-y-14 px-20">
+            <div class="card w-96 bg-base-100 shadow-xl hover:bg-warning">
+                <figure class="px-10 pt-10">
+                    <img src="/images/triangle.png" alt="Shoes" class="rounded-xl" />
+                </figure>
+                <div class="card-body items-center text-center">
+                    <h2 class="card-title">Triangle</h2>
+                    <p>Area (A) = 0.5 x b x h</p>
+                    <div class="flex items-center gap-2">
+                        <input id="triangle-value-1" type="number" placeholder="value of b"
+                            class="input input-bordered input-secondary w-full max-w-xs" />
+                        <p>cm</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input id="triangle-value-2" type="number" placeholder="value of h"
+                            class="input input-bordered input-secondary w-full max-w-xs" />
+                        <p>cm</p>
+                    </div>
+                    <div class="card-actions">
+                        <button id="triangle-calculate" class="btn btn-primary">Calculate</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card w-96 bg-base-100 shadow-xl hover:bg-warning">
+                <figure class="px-10 pt-10">
+                    <img src="/images/rectangle.png" alt="Shoes" class="rounded-xl" />
+                </figure>
+                <div class="card-body items-center text-center">
+                    <h2 class="card-title">Rectangle</h2>
+                    <p>Area (A) = w x l</p>
+                    <div class="flex items-center gap-2">
+                        <input id="rectangle-value-1" type="number" placeholder="value of w"
+                            class="input input-bordered input-secondary w-full max-w-xs" />
+                        <p>cm</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input id="rectangle-value-2" type="number" placeholder="value of l"
+                            class="input input-bordered input-secondary w-full max-w-xs" />
+                        <p>cm</p>
+                    </div>
+                    <div class="card-actions">
+                        <button id="rectangle-calculate" class="btn btn-primary">Calculate</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card w-96 bg-base-100 shadow-xl hover:bg-warning">
+                <figure class="px-10 pt-10">
+                    <img src="/images/parallelogram.png" alt="Shoes" class="rounded-xl" />
+                </figure>
+                <div class="card-body items-center text-center">
+                    <h2 class="card-title">Parallelogram</h2>
+                    <p>Area (A) = b x h</p>
+                    <div class="flex items-center gap-2">
+                        <input id="parallelogram-value-1" type="number" placeholder="value of b"
+                            class="input input-bordered input-secondary w-full max-w-xs" />
+                        <p>cm</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input id="parallelogram-value-2" type="number" placeholder="value of h"
+                            class="input input-bordered input-secondary w-full max-w-xs" />
+                        <p>cm</p>
+                    </div>
+                    <div class="card-actions">
+                        <button id="parallelogram-calculate" class="btn btn-primary">Calculate</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card w-96 bg-base-100 shadow-xl">
+                <figure class="px-10 pt-10">
+                    <h3 class="text-lg font-medium underline underline-offset-3">Area Calculation</h3>
+                </figure>
+                <div class="card-body items-center text-center">
+                    <div id="triangle-result" class="flex gap-4 items-center bg-secondary text-white p-3 rounded-lg hidden">
+                        <p class="font-medium">1. Triangle</p>
+                        <p class="font-medium"><span id="triangle-area">00</span><span id="triangle-measure-unit">cm</span><sup>2</sup></p>
+                        <button id="triangle-convert-button" class="btn btn-primary">Convert to m<sup>2</sup></button>
+                    </div>
+                    <div id="rectangle-result" class="flex gap-4 items-center bg-secondary text-white p-3 rounded-lg hidden">
+                        <p class="font-medium">2. Rectangle</p>
+                        <p class="font-medium"><span id="rectangle-area">00</span><span id="rectangle-measure-unit">cm</span><sup>2</sup></p>
+                        <button id="rectangle-convert-button" class="btn btn-primary">Convert to m<sup>2</sup></button>
+                    </div>
+                    <div id="parallelogram-result" class="flex gap-4 items-center bg-secondary text-white p-3 rounded-lg hidden">
+                        <p class="font-medium">3. Parallelogram</p>
+                        <p class="font-medium"><span id="parallelogram-area">00</span><span id="parallelogram-measure-unit">cm</span><sup>2</sup></p>
+                        <button id="parallelogram-convert-button" class="btn btn-primary">Convert to m<sup>2</sup></button>
+                    </div>
+                    <div id="rhombus-result" class="flex gap-4 items-center bg-secondary text-white p-3 rounded-lg hidden">
+                        <p class="font-medium">4. Rhombus</p>
+                        <p class="font-medium"><span id="rhombus-area">00</span><span id="rhombus-measure-unit">cm</span><sup>2</sup></p>
+                        <button id="rhombus-convert-button" class="btn btn-primary">Convert to m<sup>2</sup></button>
+                    </div>
+                    <div id="pentagon-result" class="flex gap-4 items-center bg-secondary text-white p-3 rounded-lg hidden">
+                        <p class="font-medium">5. Pentagon</p>
+                        <p class="font-medium"><span id="pentagon-area">00</span><span id="pentagon-measure-unit">cm</span><sup>2</sup></p>
+                        <button id="pentagon-convert-button" class="btn btn-primary">Convert to m<sup>2</sup></button>
+                    </div>
+                    <div id="ellipse-result" class="flex gap-4 items-center bg-secondary text-white p-3 rounded-lg hidden">
+                        <p class="font-medium">6. Ellipse</p>
+                        <p class="font-medium"><span id="ellipse-area">00</span><span id="ellipse-measure-unit">cm</span><sup>2</sup></p>
+                        <button id="ellipse-convert-button" class="btn btn-primary">Convert to m<sup>2</sup></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card w-96 bg-base-100 shadow-xl hover:bg-warning">
+                <figure class="px-10 pt-10">
+                    <img src="/images/rhombus.png" alt="Shoes" class="rounded-xl" />
+                </figure>
+                <div class="card-body items-center text-center">
+                    <h2 class="card-title">Rhombus</h2>
+                    <p>Area (A) = 0.5 x d<sub>1</sub> x d<sub>2</sub></p>
+                    <div class="flex items-center gap-2">
+                        <input id="rhombus-value-1" type="number" placeholder="value of d1"
+                            class="input input-bordered input-secondary w-full max-w-xs" />
+                        <p>cm</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input id="rhombus-value-2" type="number" placeholder="value of d2"
+                            class="input input-bordered input-secondary w-full max-w-xs" />
+                        <p>cm</p>
+                    </div>
+                    <div class="card-actions">
+                        <button id="rhombus-calculate" class="btn btn-primary">Calculate</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card w-96 bg-base-100 shadow-xl hover:bg-warning">
+                <figure class="px-10 pt-10">
+                    <img src="/images/pentagon.png" alt="Shoes" class="rounded-xl" />
+                </figure>
+                <div class="card-body items-center text-center">
+                    <h2 class="card-title">Pentagon</h2>
+                    <p>Area (A) = 0.5 x p x b</p>
+                    <div class="flex items-center gap-2">
+                        <input id="pentagon-value-1" type="number" placeholder="value of p"
+                            class="input input-bordered input-secondary w-full max-w-xs" />
+                        <p>cm</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input id="pentagon-value-2" type="number" placeholder="value of b"
+                            class="input input-bordered input-secondary w-full max-w-xs" />
+                        <p>cm</p>
+                    </div>
+                    <div class="card-actions">
+                        <button id="pentagon-calculate" class="btn btn-primary">Calculate</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card w-96 bg-base-100 shadow-xl hover:bg-warning">
+                <figure class="px-10 pt-10">
+                    <img src="/images/ellipse.png" alt="Shoes" class="rounded-xl" />
+                </figure>
+                <div class="card-body items-center text-center">
+                    <h2 class="card-title">Ellipse</h2>
+                    <p>Area (A) = π x a x b</p>
+                    <div class="flex items-center gap-2">
+                        <input id="ellipse-value-1" type="number" placeholder="value of a"
+                            class="input input-bordered input-secondary w-full max-w-xs" />
+                        <p>cm</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input id="ellipse-value-2" type="number" placeholder="value of b"
+                            class="input input-bordered input-secondary w-full max-w-xs" />
+                        <p>cm</p>
+                    </div>
+                    <div class="card-actions">
+                        <button id="ellipse-calculate" class="btn btn-primary">Calculate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- js files -->
+    <script src="scripts/calculation.js"></script>
+</body>
+
+</html>
